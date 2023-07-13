@@ -19,7 +19,8 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html'
+        template: './src/index.html',
+        title: 'another text editor'
       }),
       new WebpackPwaManifest({
         fingerprints: false,
@@ -29,8 +30,8 @@ module.exports = () => {
         description: 'a new text editor!',
         background_color: '#FFC5D0',
         theme_color: '#FFC5D0',
-        start_url: '/',
-        publicPath: '/',
+        start_url: './',
+        publicPath: './',
         icons: [
           {
             src: path.resolve('src/images/logo.png'),
@@ -46,7 +47,6 @@ module.exports = () => {
     ],
 
     module: {
-      // css loaders
       rules: [
         {
           test: /\.css$/i,
