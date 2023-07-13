@@ -6,6 +6,12 @@
 
 Starter code: https://github.com/coding-boot-camp/cautious-meme
 
+https://github.com/amymgardiner/Text-Editor
+
+bob small
+
+https://github.com/stellalph/19-PWA-Text-Editor
+
 Criteria-
 
 WHEN I open my application in my editor

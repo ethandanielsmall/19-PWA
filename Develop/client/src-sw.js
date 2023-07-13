@@ -27,4 +27,30 @@ warmStrategyCache({
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
 // TODO: Implement asset caching
-registerRoute();
+registerRoute(
+  ({ request }) =>
+    request.destination === 'style' ||
+    request.destination === 'script' ||
+    request.destination === 'font',
+  new CacheFirst({
+    exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+
+    // Define runtime caching rules.
+    runtimeCaching: [{
+      // Match any request that ends with .png, .jpg, .jpeg or .svg.
+      urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+
+      // Apply a cache-first strategy.
+      handler: 'CacheFirst',
+
+      options: {
+        // Use a custom cache name.
+        cacheName: 'images',
+
+        // Only cache 2 images.
+        expiration: {
+          maxEntries: 2,
+        },
+      },
+    }],
+  }));
