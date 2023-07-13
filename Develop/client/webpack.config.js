@@ -21,11 +21,28 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: './src/index.html'
       }),
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css',
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'just another text editor',
+        short_name: 'jate',
+        description: 'a new text editor!',
+        background_color: '#FFC5D0',
+        theme_color: '#FFC5D0',
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
       }),
-      new CleanWebpackPlugin(),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
     ],
 
     module: {
